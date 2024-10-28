@@ -80,8 +80,7 @@ php artisan serve
 npm run build 
  ```
 6. There are some default photos for users,products and shippers all are stored in public each one in a folder under its name
-     users/img    the default img is  feature-image.jpg
-     shipers/img  the default img is  shipper.png
-     products/img the default img is  team_01.jpg
-#### Be default all 15 users have a default image by name Capture.PNG
+     - **users/img**    the default img is  feature-image.jpg
+     - **shipers/img**  the default img is  shipper.png
+     - **products/img** the default img is  team_01.jpg
 
