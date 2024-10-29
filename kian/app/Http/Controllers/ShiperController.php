@@ -60,7 +60,7 @@ class ShiperController extends Controller
             'phone' => $ShiperRequest->phone,
             'img' => $imageName,
         ]);
-        return redirect()->route('shipperdashboard.index')->with('success', 'Shiper Has Been Successfully Created');
+        return redirect()->route('shipperdashboard.index')->with('success', 'SHIPPER_CREATED');
     }
 
     public function update(ShiperRequest $ShiperRequest, $id)
@@ -81,7 +81,7 @@ class ShiperController extends Controller
             'phone' => $ShiperRequest->phone,
             'img' => $imageName,
         ]);
-        return redirect()->route('shipperdashboard.index')->with('success', 'Shiper Has Been Successfully Updated');
+        return redirect()->route('shipperdashboard.index')->with('success', 'SHIPPER_UPDATED');
     }
 
     public function destroy($id)
@@ -89,10 +89,8 @@ class ShiperController extends Controller
         $shiper = Shiper::findOrFail($id);
         if (File::exists(public_path("shipers/img/" . $shiper->img)) && $shiper->img !== "shipper.png") {
             unlink(public_path("shipers/img/" . $shiper->img));
-        } else {
-            dd('canot delete');
         }
         $shiper->delete();
-        return redirect()->route('shipperdashboard  .index')->with('success', 'Shiper Has Been Successfully Deleted');
+        return redirect()->route('shipperdashboard.index')->with('success', 'SHIPPER_DELETED');
     }
 }

@@ -21,6 +21,6 @@ class MessageController extends Controller
             'subject' => $request->subject,
             'message' => $request->message,
         ]);
-        return redirect()->route('contact')->with('success', 'Your Message Has Been Sent , We are very appreciate your opinion');
+        return redirect()->route('contact')->with('success', 'MESSAGE_SENT');
     }
 }

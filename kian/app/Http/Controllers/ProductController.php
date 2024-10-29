@@ -65,7 +65,7 @@ class ProductController extends Controller
             'img' => $imageName,
             'shiper_id' => $productRequest->shiper_id,
         ]);
-        return redirect()->route('productdashboard.index')->with('success', 'Product Has Been Successfully Created');
+        return redirect()->route('productdashboard.index')->with('success', 'PRODUCT_CREATED');
     }
 
     public function update(ProductRequest $productRequest, $id)
@@ -90,7 +90,7 @@ class ProductController extends Controller
             'img' => $imageName,
             'shiper_id' => $productRequest->shiper_id,
         ]);
-        return redirect()->route('productdashboard.index')->with('success', 'Product Has Been Successfully Updated');
+        return redirect()->route('productdashboard.index')->with('success', 'PRODUCT_UPDATED');
     }
 
     public function destroy($id)
@@ -101,6 +101,6 @@ class ProductController extends Controller
             unlink(public_path("products/img/" . $product->img));
         }
         $product->delete();
-        return redirect()->route('productdashboard.index')->with('success', 'Product Has Been Successfully Deleted');
+        return redirect()->route('productdashboard.index')->with('success', "PRODUCT_DELETED");
     }
 }

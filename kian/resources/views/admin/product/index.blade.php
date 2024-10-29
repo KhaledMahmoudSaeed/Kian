@@ -14,7 +14,11 @@
 
         @if (session('success'))
             <div id="message" class="alert alert-success">
-                {{ session('success') }}
+                {{-- {{ session('success') }} --}}
+                @php
+                    $word = session('success');
+                @endphp
+                @lang("messages.$word")
             </div>
         @endif
 
@@ -27,9 +31,9 @@
                     <th class="text-info">@lang('messages.ID')</th>
                     <th class="text-info">@lang('messages.NAME')</th>
                     <th class="text-info">@lang('messages.DESCRIPTION')</th>
+                    <th class="text-info">@lang('messages.SALE')%</th>
                     <th class="text-info">@lang('messages.PRICE')</th>
                     <th class="text-info">@lang('messages.QUANTITY')</th>
-                    <th class="text-info">@lang('messages.SALE')</th>
                     <th class="text-info">@lang('messages.SHIPPER')</th>
                     <th class="text-info">@lang('messages.ACTIONS')</th>
                 </tr>
@@ -40,9 +44,19 @@
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->description }}</td>
-                        <td>{{ $item->price }}</td>
+                        <td>{{ $item->sale }}%</td>
+                        <td style="width: 120px;">
+                            @if ($item->sale !== null && $item->sale !== 0)
+                                <span class="text-muted" style="text-decoration: line-through;">{{ $item->price }}</span>
+                                <span class="fw-bold text-primary ms-2">
+                                    {{ $item->price - round($item->price * ($item->sale / 100), 2) }}
+                                </span>
+                            @else
+                                <span class="fw-bold text-primary ms-2"> {{ $item->price }}</span>
+                            @endif
+                        </td>
+
                         <td>{{ $item->quantity }}</td>
-                        <td>{{ $item->sale }}</td>
                         <td>{{ $item->shiper_id }}</td>
                         <td>
                             <a href="{{ route('productdashboard.show', $item->id) }}" class="btn btn-primary btn-sm">

@@ -57,13 +57,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/promote/{id}', function ($id) {
             $user = User::findOrFail($id);
             $user->update(['role' => 'admin']);
-            return redirect()->route('userdashboard.index')->with('success', 'User Has Been Promoted Successfully');
+            return redirect()->route('userdashboard.index')->with('success', 'USER_PROMOTED');
         })->name('promote');
 
         Route::post('/demote/{id}', function ($id) {
             $user = User::findOrFail($id);
             $user->update(['role' => 'user']);
-            return redirect()->route('userdashboard.index')->with('success', 'User Has Been Demoted Successfully');
+            return redirect()->route('userdashboard.index')->with('success', 'USER_DEMOTED');
         })->name('demote');
 
 

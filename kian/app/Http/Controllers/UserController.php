@@ -61,7 +61,7 @@ class UserController extends Controller
             'country' => $userRequest->country,
             'img' => $imageName,
         ]);
-        return redirect()->route('profile', ['id' => $user->id])->with('success', 'Profile Has Been Successfully Updated');
+        return redirect()->route('profile', ['id' => $user->id])->with('success', 'PROFILE_UPDATED');
     }
     public function destroy($id)
     {
@@ -70,6 +70,6 @@ class UserController extends Controller
             unlink(public_path("users/img/" . $user->img));
         }
         $user->delete();
-        return redirect()->route("userdashboard.index")->with('success', 'User Has Been Successfully Deleted');
+        return redirect()->route("userdashboard.index")->with('success', 'USER_DELETED');
     }
 }

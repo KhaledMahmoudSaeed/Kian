@@ -41,11 +41,11 @@
                 </div>
                 <div class="col-md-8">
                     <!-- How to change your own map point
-                                                                                                                                                                                                                                                                                                                                                                                         1. Go to Google Maps
-                                                                                                                                                                                                                                                                                                                                                                                         2. Click on your location point
-                                                                                                                                                                                                                                                                                                                                                                                         3. Click "Share" and choose "Embed map" tab
-                                                                                                                                                                                                                                                                                                                                                                                         4. Copy only URL and paste it within the src="" field below
-                                                                                                                                                                                                                                                                                                                                                                                        -->
+                                                                                                                                                                                                                                                                                                                                                                                             1. Go to Google Maps
+                                                                                                                                                                                                                                                                                                                                                                                             2. Click on your location point
+                                                                                                                                                                                                                                                                                                                                                                                             3. Click "Share" and choose "Embed map" tab
+                                                                                                                                                                                                                                                                                                                                                                                             4. Copy only URL and paste it within the src="" field below
+                                                                                                                                                                                                                                                                                                                                                                                            -->
                     <div id="map">
                         <iframe
                             src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed"
@@ -82,8 +82,12 @@
                 <div class="col-md-8">
                     <div class="contact-form">
                         @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
+                            <div id="message" class="alert alert-success">
+                                {{-- {{ session('success') }} --}}
+                                @php
+                                    $word = session('success');
+                                @endphp
+                                @lang("messages.$word")
                             </div>
                         @endif
                         <form id="contact" action="{{ route('StoreMessage') }}" method="post"

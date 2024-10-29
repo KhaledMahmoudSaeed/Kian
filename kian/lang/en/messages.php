@@ -104,5 +104,17 @@ return [
     'EDIT' => 'Edit',
     'EDIT_PROFILE' => 'Edit Profile',
     'UPDATE' => 'Update',
+    'PRODUCT_DELETED' => 'Product Has Been Successfully Deleted',
+    'PRODUCT_CREATED' => 'Product Has Been Successfully Created',
+    'USER_DELETED' => 'User Has Been Successfully Deleted',
+    'PROFILE_UPDATED' => 'Profile Has Been Successfully Updated',
+    'SHIPPER_DELETED' => 'Shipper Has Been Successfully Deleted',
+    'SHIPPER_UPDATED' => 'Shipper Has Been Successfully Updated',
+    'SHIPPER_CREATED' => 'Shipper Has Been Successfully Created',
+    'PRODUCT_UPDATED' => 'Product Has Been Successfully Updated',
+    'USER_DEMOTED' => 'User Has Been Demoted Successfully',
+    'USER_PROMOTED' => 'User Has Been Promoted Successfully',
+    'MESSAGE_SENT' => 'Your Message Has Been Sent, We are very appreciative of your opinion',
+    'CONFIRM_DELETE' => 'Are you sure you want to delete this?',
 ];
 ?>

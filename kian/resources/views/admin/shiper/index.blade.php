@@ -11,10 +11,13 @@
                 placeholder="@lang('messages.SEARCH') @lang('messages.ID')" aria-label="@lang('messages.SEARCH')" value="{{ request('q') }}">
             <button type="submit" class="btn btn-primary">@lang('messages.SEARCH')</button>
         </form>
-
         @if (session('success'))
             <div id="message" class="alert alert-success">
-                {{ session('success') }}
+                {{-- {{ session('success') }} --}}
+                @php
+                    $word = session('success');
+                @endphp
+                @lang("messages.$word")
             </div>
         @endif
 

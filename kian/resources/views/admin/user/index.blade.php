@@ -8,8 +8,12 @@
 
         {{-- Display Session Messages --}}
         @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
+            <div id="message" class="alert alert-success">
+                {{-- {{ session('success') }} --}}
+                @php
+                    $word = session('success');
+                @endphp
+                @lang("messages.$word")
             </div>
         @elseif (session('error'))
             <div class="alert alert-danger">
