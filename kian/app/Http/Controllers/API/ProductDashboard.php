@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
 
 class ProductDashboard extends Controller
 {
@@ -51,8 +52,21 @@ class ProductDashboard extends Controller
 
     public function store(ProductRequest $productRequest)
     {
-        $validatedData = $productRequest->validated();
-        Product::create($validatedData);
+        $imageName = "feature-image.jpg";
+        if ($productRequest->hasFile("img")) {
+            $image = $productRequest->img;
+            $imageName = rand(0, 1243) . "_0" . time() . "." . $image->extension();
+            $image->move(public_path("products/img/"), $imageName);
+        }
+        Product::create([
+            'name' => $productRequest->name,
+            'description' => $productRequest->description,
+            'price' => $productRequest->price,
+            'quantity' => $productRequest->quantity,
+            'sale' => $productRequest->sale,
+            'img' => $imageName,
+            'shiper_id' => $productRequest->shiper_id,
+        ]);
 
         return response()->json([
             'message' => 'Product created successfully',
@@ -66,8 +80,25 @@ class ProductDashboard extends Controller
 
         if ($product) {
 
-            $validated_data = $productRequest->validated();
-            $product->update($validated_data);
+            $imageName = 'feature-image.jpg';
+            if ($productRequest->hasFile("img")) {
+                if (File::exists(public_path("products/img/" . $product->img)) && $product->img !== "feature-image.jpg") {
+                    // File::delete(public_path("products/img/" . $product->img));
+                    unlink(public_path("products/img/" . $product->img));
+                }
+                $image = $productRequest->img;
+                $imageName = rand(0, 1243) . "_0" . time() . "." . $image->extension();
+                $image->move(public_path("products/img/"), $imageName);
+            }
+            $product->update([
+                'name' => $productRequest->name,
+                'description' => $productRequest->description,
+                'price' => $productRequest->price,
+                'quantity' => $productRequest->quantity,
+                'sale' => $productRequest->sale,
+                'img' => $imageName,
+                'shiper_id' => $productRequest->shiper_id,
+            ]);
             return response()->json([
                 'message' => 'Product Has Been Updated',
                 'status' => Response::HTTP_OK,
@@ -85,7 +116,10 @@ class ProductDashboard extends Controller
     {
         $product = Product::find($id);
         if ($product) {
-
+            if (File::exists(public_path("products/img/" . $product->img)) && $product->img !== "feature-image.jpg") {
+                // File::delete(public_path("products/img/" . $product->img));
+                unlink(public_path("products/img/" . $product->img));
+            }
             $product->delete();
             return response()->json([
                 'message' => 'Product Deleted Successfully',
