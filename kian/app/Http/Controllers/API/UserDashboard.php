@@ -46,10 +46,11 @@ class UserDashboard extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        if (File::exists(public_path("/users/img/" . $user->img)) && $user->img !== "feature-image.jpg") {
-            unlink("/users/img/" . $user->img);
-        }
+
         if ($user) {
+            if (File::exists(public_path("/users/img/" . $user->img)) && $user->img !== "team_01.jpg" && $user->img !== NULL) {
+                unlink(public_path("users/img/" . $user->img));
+            }
             $user->delete();
             return response()->json([
                 'message' => 'User Deleted Successfully',
