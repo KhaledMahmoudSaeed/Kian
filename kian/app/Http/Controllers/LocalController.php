@@ -11,11 +11,11 @@ class LocalController extends Controller
     public function setLocale($lang)
     {
 
-        if (in_array($lang, ['ar', 'en'])) {
+        if (in_array($lang, ['ar', 'en', 'de'])) {
             App::setLocale($lang);
             Session::put('locale', $lang);
         }
-        
+
         return back();
     }
 }

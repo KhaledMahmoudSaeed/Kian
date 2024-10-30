@@ -41,6 +41,7 @@
             @guest
                 <a href="locale/ar" class="nav-link">العربية<img src="icons/english.jpg" alt=""></a>
                 <a href="locale/en" class="nav-link">English<img src="icons/english.jpg" alt=""></a>
+                <a href="locale/de" class="nav-link">Deutsch<img src="icons/english.jpg" alt=""></a>
             @endguest
 
     </ul>

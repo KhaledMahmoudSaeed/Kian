@@ -113,6 +113,9 @@
                             <a href="locale/en" class="dropdown-item custom-item"><i
                                     class="fas fa-tachometer-alt mr-2"></i>en<img src="icons/english.jpg"
                                     alt=""></a>
+                            <a href="locale/de" class="dropdown-item custom-item"><i
+                                    class="fas fa-tachometer-alt mr-2"></i>de<img src="icons/english.jpg"
+                                    alt=""></a>
                         </div>
                     </li>
 
