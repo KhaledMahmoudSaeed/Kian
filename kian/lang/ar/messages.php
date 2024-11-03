@@ -115,6 +115,12 @@ return [
     'USER_PROMOTED' => 'تم ترقية المستخدم بنجاح',
     'MESSAGE_SENT' => 'تم إرسال رسالتك، نحن نقدر رأيك كثيراً',
     'CONFIRM_DELETE' => 'هل أنت متأكد أنك تريد الحذف؟',
+    'MESSAGE_DELETED' => 'تم مسح الرسالة بنجاح',
+    "MESSAGE_DASHBOARD" => "لوحة الرسائل",
+    "SUBJECT" => "الموضوع",
+    "MESSAGE" => "الرسالة",
+    "DASHBOARDS" => "لوحات التحكم",
+
 
 ];
 ?>

@@ -54,6 +54,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/shipperdashboard', ShiperController::class);
         Route::get('/shipperdashboard_search', [ShiperController::class, 'search'])->name('shipperdashboard.search');
 
+        Route::get('/messagedashboard', [MessageController::class, 'index'])->name('messagedashboard.index');
+        Route::delete('/messagedashboard/{id}', [MessageController::class, 'destroy'])->name('messagedashboard.destroy');
+
         Route::post('/promote/{id}', function ($id) {
             $user = User::findOrFail($id);
             $user->update(['role' => 'admin']);

@@ -114,6 +114,12 @@ return [
     'USER_PROMOTED' => 'Benutzer erfolgreich befördert',
     'MESSAGE_SENT' => 'Nachricht gesendet, danke für Ihr Feedback!',
     'CONFIRM_DELETE' => 'Sind Sie sicher, dass Sie löschen möchten?',
+    'MESSAGE_DELETED' => 'Nachricht erfolgreich gelöscht',
+    "MESSAGE_DASHBOARD" => "Nachrichtenübersicht",
+    "SUBJECT" => "Betreff",
+    "MESSAGE" => "Nachricht",
+    "DASHBOARDS" => "Übersichten"
+
 ];
 
 ?>

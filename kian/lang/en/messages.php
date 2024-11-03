@@ -116,5 +116,11 @@ return [
     'USER_PROMOTED' => 'User Has Been Promoted Successfully',
     'MESSAGE_SENT' => 'Your Message Has Been Sent, We are very appreciative of your opinion',
     'CONFIRM_DELETE' => 'Are you sure you want to delete this?',
+    'MESSAGE_DELETED' => 'Message Has Been Successfully Deleted ',
+    "MESSAGE_DASHBOARD" => "Message Dashboard",
+    "SUBJECT" => "Subject",
+    "MESSAGE" => "Message",
+    "DASHBOARDS" => "Dashboards",
+
 ];
 ?>
