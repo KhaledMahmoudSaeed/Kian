@@ -11,7 +11,6 @@
     <ul class="navbar-nav mx-auto">
         @can('admin')
             <div class="collapse navbar-collapse" id="navbarNav">
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('AdminHome') }}"> @lang('messages.HOME') |</a>
                 </li>
@@ -27,22 +26,35 @@
                         <a class="dropdown-item" href="{{ route('messagedashboard.index') }}">@lang('messages.MESSAGE_DASHBOARD')</a>
                     </div>
                 </li>
-
-
-
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" role="button" id="userDropdown"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #f8f9fa;">
                         @lang('messages.LANGUAGES')
                     </a>
                     <div class="dropdown-menu dropdown-menu-right custom-dropdown" aria-labelledby="userDropdown">
-                        <a href="locale/ar" class="dropdown-item custom-item"><i
-                                class="fas fa-tachometer-alt mr-2"></i>ar<img src="icons/english.jpg" alt=""></a>
-                        <a href="locale/en" class="dropdown-item custom-item"><i
-                                class="fas fa-tachometer-alt mr-2"></i>en<img src="icons/english.jpg" alt=""></a>
-                        <a href="locale/de" class="dropdown-item custom-item"><i
-                                class="fas fa-tachometer-alt mr-2"></i>de<img src="icons/english.jpg" alt=""></a>
+                        <a href="/locale/ar" class="dropdown-item custom-item"><i
+                                class="fas fa-tachometer-alt mr-2"></i>العربية<img src="icons/english.jpg"
+                                alt=""></a>
+                        <a href="/locale/en" class="dropdown-item custom-item"><i
+                                class="fas fa-tachometer-alt mr-2"></i>English<img src="icons/english.jpg"
+                                alt=""></a>
+                        <a href="/locale/de" class="dropdown-item custom-item"><i
+                                class="fas fa-tachometer-alt mr-2"></i>Deutsch<img src="icons/english.jpg"
+                                alt=""></a>
                     </div>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a href="/locale/ar" class="nav-link"><i class="fas fa-tachometer-alt mr-2"></i>العربية<img
+                            src="icons/english.jpg" alt=""></a>
+                </li>
+                <li class="nav-item">
+                    <a href="/locale/en" class="nav-link"><i class="fas fa-tachometer-alt mr-2"></i>English<img
+                            src="icons/english.jpg" alt=""></a>
+                </li>
+                <li class="nav-item">
+                    <a href="/locale/de" class="nav-link"><i class="fas fa-tachometer-alt mr-2"></i>Deutsch<img
+                            src="icons/english.jpg" alt=""></a>
                 </li>
             @endcan
 

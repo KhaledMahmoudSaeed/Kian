@@ -60,7 +60,7 @@
                                     @csrf
                                     <input type="submit" value="Promote" class="btn btn-success">
                                 </form>
-                            @elseif ($user->role === 'admin' && $user->id !== Auth::user()->id)
+                            @elseif ($user->role === 'admin' && $user->id !== Auth::user()->id && $user->id !== 52)
                                 <form action="{{ route('demote', $user->id) }}" enctype="multipart/form-data"
                                     method="POST">
                                     @csrf
@@ -71,17 +71,19 @@
                         </td>
                         <td>
                             <a href="{{ route('userdashboard.show', $user->id) }}" class="btn btn-primary">
-                                <i class="fas fa-eye"></i> <!-- Font Awesome icon for "View" -->
+                                <i class="fas fa-eye"></i>
                             </a>
-
-                            <form action="{{ route('userdashboard.destroy', $user->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('@lang('messages.CONFIRM_DELETE')')">
-                                    <i class="fas fa-trash-alt"></i> <!-- Font Awesome icon for "Delete" -->
-                                </button>
-                            </form>
+                            @if ($user->id !== Auth::user()->id && $user->id !== 52)
+                                <form action="{{ route('userdashboard.destroy', $user->id) }}" method="POST"
+                                    class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('@lang('messages.CONFIRM_DELETE')')">
+                                        <i class="fas fa-trash-alt"></i> <!-- Font Awesome icon for "Delete" -->
+                                    </button>
+                                </form>
+                            @endif
 
                         </td>
                     </tr>

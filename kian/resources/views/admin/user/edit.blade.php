@@ -7,10 +7,11 @@
         <div class="container mx-auto px-4 py-8">
             <div class="max-w-md mx-auto">
                 <h1 class="text-center text-white">@lang('messages.EDIT_PROFILE')</h1>
+                <a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">@lang('messages.BACK')</a>
+
                 <div class="bg-gray-800 border border-gray-700 rounded-lg shadow-md">
                     <div class="bg-gray-800 p-4 rounded-b-lg">
-                        <form method="POST" action="{{ route('user.update', $user->id) }}"
-                            enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('user.update', $user->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 

@@ -66,7 +66,7 @@ class ShiperController extends Controller
     public function update(ShiperRequest $ShiperRequest, $id)
     {
         $shiper = Shiper::findOrFail($id);
-        $imageName = "shipper.png";
+        // $imageName = "shipper.png";
         if ($ShiperRequest->hasFile("img")) {
             if (File::exists(public_path("shipers/img/" . $shiper->img)) && $shiper->img !== "shipper.png") {
                 unlink(public_path("shipers/img/" . $shiper->img));
@@ -74,12 +74,17 @@ class ShiperController extends Controller
             $image = $ShiperRequest->img;
             $imageName = rand(0, 1243) . "_0" . time() . "." . $image->extension();
             $image->move(public_path("shipers/img/"), $imageName);
+            $savedImage = $imageName;
+
+        } else {
+            $savedImage = $shiper->img;
         }
+
         $shiper->update([
             'name' => $ShiperRequest->name,
             'country' => $ShiperRequest->country,
             'phone' => $ShiperRequest->phone,
-            'img' => $imageName,
+            'img' => $savedImage,
         ]);
         return redirect()->route('shipperdashboard.index')->with('success', 'SHIPPER_UPDATED');
     }

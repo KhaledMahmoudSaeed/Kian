@@ -53,13 +53,17 @@ class UserController extends Controller
             $image = $userRequest->img;
             $imageName = rand(0, 1243) . "_0" . time() . "." . $image->extension();
             $image->move(public_path('users/img/'), $imageName);
+            $savedImage = $imageName;
+
+        } else {
+            $savedImage = $user->img;
         }
         $user->update([
             'name' => $userRequest->name,
             'email' => $userRequest->email,
             'phone' => $userRequest->phone,
             'country' => $userRequest->country,
-            'img' => $imageName,
+            'img' => $savedImage,
         ]);
         return redirect()->route('profile', ['id' => $user->id])->with('success', 'PROFILE_UPDATED');
     }

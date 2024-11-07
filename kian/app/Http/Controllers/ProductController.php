@@ -80,6 +80,9 @@ class ProductController extends Controller
             $image = $productRequest->img;
             $imageName = rand(0, 1243) . "_0" . time() . "." . $image->extension();
             $image->move(public_path("products/img/"), $imageName);
+            $savedImage = $imageName;
+        } else {
+            $savedImage = $product->img;
         }
         $product->update([
             'name' => $productRequest->name,
@@ -87,7 +90,7 @@ class ProductController extends Controller
             'price' => $productRequest->price,
             'quantity' => $productRequest->quantity,
             'sale' => $productRequest->sale,
-            'img' => $imageName,
+            'img' => $savedImage,
             'shiper_id' => $productRequest->shiper_id,
         ]);
         return redirect()->route('productdashboard.index')->with('success', 'PRODUCT_UPDATED');
