@@ -18,6 +18,8 @@ Auth::routes();
 // Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
+
+    // auth user routes
     Route::get('/', function () {
         return view('home');
     })->name('home')->middleware('authorization');
@@ -45,6 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => 'can:admin'], function () {
 
+        // admin routes
         Route::resource('/userdashboard', UserController::class);
         Route::get('/dashboauserrd_search', [UserController::class, 'search'])->name('userdashboard.search');
 
@@ -57,20 +60,24 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/messagedashboard', [MessageController::class, 'index'])->name('messagedashboard.index');
         Route::delete('/messagedashboard/{id}', [MessageController::class, 'destroy'])->name('messagedashboard.destroy');
 
+
+        // promote user to admin
         Route::post('/promote/{id}', function ($id) {
             $user = User::findOrFail($id);
             $user->update(['role' => 'admin']);
             return redirect()->route('userdashboard.index')->with('success', 'USER_PROMOTED');
         })->name('promote');
 
+        // demote admin to user
         Route::post('/demote/{id}', function ($id) {
             $user = User::findOrFail($id);
             $user->update(['role' => 'user']);
             return redirect()->route('userdashboard.index')->with('success', 'USER_DEMOTED');
         })->name('demote');
 
-
     });
+
+    // edit profile
     Route::get('/user/{userdashboard}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/{userdashboard} ', [UserController::class, 'update'])->name('user.update');
 

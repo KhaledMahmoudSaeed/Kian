@@ -14,7 +14,7 @@
 
         @if (session('success'))
             <div id="message" class="alert alert-success">
-                {{-- {{ session('success') }} --}}
+                {{-- first I store the message from session in a variable then i pass it  to @lang directive  --}}
                 @php
                     $word = session('success');
                 @endphp

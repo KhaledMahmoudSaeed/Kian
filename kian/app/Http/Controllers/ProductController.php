@@ -71,7 +71,9 @@ class ProductController extends Controller
     public function update(ProductRequest $productRequest, $id)
     {
         $product = Product::findOrFail($id);
-        $imageName = 'feature-image.jpg';
+        // $imageName = 'feature-image.jpg';
+
+        // if this product has a picture and this picture is not the default then delete it before save new one
         if ($productRequest->hasFile("img")) {
             if (File::exists(public_path("products/img/" . $product->img)) && $product->img !== "feature-image.jpg") {
                 // File::delete(public_path("products/img/" . $product->img));
@@ -80,6 +82,8 @@ class ProductController extends Controller
             $image = $productRequest->img;
             $imageName = rand(0, 1243) . "_0" . time() . "." . $image->extension();
             $image->move(public_path("products/img/"), $imageName);
+
+            // handel the edit case if the user don't want to update his picture
             $savedImage = $imageName;
         } else {
             $savedImage = $product->img;
@@ -99,6 +103,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+        // delete image first
         if (File::exists(public_path("products/img/" . $product->img)) && $product->img !== "feature-image.jpg") {
             // File::delete(public_path("products/img/" . $product->img));
             unlink(public_path("products/img/" . $product->img));

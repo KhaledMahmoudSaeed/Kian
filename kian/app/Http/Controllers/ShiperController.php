@@ -67,6 +67,8 @@ class ShiperController extends Controller
     {
         $shiper = Shiper::findOrFail($id);
         // $imageName = "shipper.png";
+
+        // if this ship has a picture and this picture is not the default then delete it before save new one
         if ($ShiperRequest->hasFile("img")) {
             if (File::exists(public_path("shipers/img/" . $shiper->img)) && $shiper->img !== "shipper.png") {
                 unlink(public_path("shipers/img/" . $shiper->img));
@@ -74,6 +76,9 @@ class ShiperController extends Controller
             $image = $ShiperRequest->img;
             $imageName = rand(0, 1243) . "_0" . time() . "." . $image->extension();
             $image->move(public_path("shipers/img/"), $imageName);
+
+
+            // handel the edit case if the user don't want to update his picture
             $savedImage = $imageName;
 
         } else {

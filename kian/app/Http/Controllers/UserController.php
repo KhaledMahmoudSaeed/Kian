@@ -45,7 +45,9 @@ class UserController extends Controller
     public function update(UserRequest $userRequest, $id)
     {
         $user = User::findOrFail($id);
-        $imageName = 'team_01.jpg';
+        // $imageName = 'team_01.jpg';
+        // if this user has a picture and this picture is not the default then delete it before save new one
+
         if ($userRequest->hasFile('img')) {
             if (File::exists(public_path('users/img/') . $user->img) && $user->img !== "team_01.jpg") {
                 unlink(public_path('users/img/') . $user->img);
@@ -53,8 +55,10 @@ class UserController extends Controller
             $image = $userRequest->img;
             $imageName = rand(0, 1243) . "_0" . time() . "." . $image->extension();
             $image->move(public_path('users/img/'), $imageName);
-            $savedImage = $imageName;
 
+
+            // handel the edit case if the user don't want to update his picture
+            $savedImage = $imageName;
         } else {
             $savedImage = $user->img;
         }
